@@ -39,7 +39,7 @@ int rightOffset = 5; // Right turn offset
 int leftOffset = -5; // Left turn offset
 int offset = 6; // Variable to correct servos that are not exactly centered
 int delayTime = 8; // Delay between limb movements
-int startPause = 5000;  // Delay time to position robot
+int startPause = 500;  // Delay time to position robot
 int test = -3; // Test varialble takes values from -6 to +5
 
 void setup()
@@ -60,16 +60,16 @@ void setup()
     s10.attach(22);
 
     // //Put snake in starting position
-    s1.write(90);
-    s2.write(90);
-    s3.write(90);
-    s4.write(90);
-    s5.write(90);
-    s6.write(90);
-    s7.write(90);
+    // s1.write(90);
+    // s2.write(90);
+    // s3.write(90);
+    // s4.write(90);
+    // s5.write(90);
     s8.write(90);
-    s9.write(90);
-    s10.write(90);
+    // s7.write(90);
+    // s8.write(90);
+    // s9.write(90);
+    // s10.write(90);
     delay(startPause);  // Pause to position robot
 
 
@@ -82,19 +82,19 @@ void loop()
     for(counter = 0; counter < 360; counter += 1)  {
         delay(delayTime);
 
-        s1.write(110);
-        s2.write(90+offset+amplitude*cos(frequency*counter*3.14159/180+4*lag));
+        // s1.write(110);
+        // s2.write(90+offset+amplitude*cos(frequency*counter*3.14159/180+4*lag));
         //s3.write(75+(15*+sin(frequency*counter*3.14159/180-(3.14159/2)))); //Set this motor to less than 90 for Forward motion
-        s3.write(70);
-        s4.write(90+offset+amplitude*cos(frequency*counter*3.14159/180+2*lag));
-        s5.write(90);
-        s6.write(90+offset+amplitude*cos(frequency*counter*3.14159/180+0*lag));
+        // s3.write(70);
+        // s4.write(90+offset+amplitude*cos(frequency*counter*3.14159/180+2*lag));
+        // s5.write(90);
+        s8.write(90+offset+amplitude*cos(frequency*counter*3.14159/180+0*lag));
         //s6.write(90);
         //s7.write(90+amplitude7*cos(frequency*counter*3.14159/180+2*lag));
-        s7.write(90);
-        s8.write(90+amplitude*cos(frequency*counter*3.14159/180-2*lag));
-        s9.write(90); //Set this motor to less than 90 for Backward motion
-        s10.write(90+amplitude*cos(frequency*counter*3.14159/180-4*lag));
+        // s7.write(90);
+        // s8.write(90+amplitude*cos(frequency*counter*3.14159/180-2*lag));
+        // s9.write(90); //Set this motor to less than 90 for Backward motion
+        // s10.write(90+amplitude*cos(frequency*counter*3.14159/180-4*lag));
     }
 }
 
