@@ -42,6 +42,9 @@ const int SERPBACK = 7;
 const int LEFTTURN = 8;
 const int RIGHTTURN = 9;
 
+const int ROLLINGR = 10;
+const int ROLLINGL = 11;
+
 
 void setup() {
     Serial.begin(115200);
@@ -79,7 +82,7 @@ void loop() {
 
                 if(Xbox.getButtonClick(R2, i))
                 {
-                    Serial.println(Xbox.getButtonClick(L2,i));
+                    Serial.println(Xbox.getButtonClick(R2,i));
                     Serial.println(F("R2"));
                     Sidewind(SIDEWINDR);
                 }
@@ -108,9 +111,18 @@ void loop() {
                     Turn(LEFTTURN);
                     Serial.println(F("Turn Left"));
                 }
-                if (Xbox.getButtonClick(LEFT, i)) {
-                    Rolling();
-                    Serial.println(F("Rolling"));
+                if(Xbox.getButtonClick(LEFT, i))
+                {
+                    Serial.println(Xbox.getButtonClick(LEFT,i));
+                    Serial.println(F("LEFT"));
+                    Rolling(ROLLINGL);
+                }
+
+                if(Xbox.getButtonClick(RIGHT, i))
+                {
+                    Serial.println(Xbox.getButtonClick(RIGHT,i));
+                    Serial.println(F("RIGHT"));
+                    Rolling(ROLLINGR);
                 }
             }
         }
@@ -206,10 +218,10 @@ void Serpentine(const int function)
             s10.write(90+amplitude*cos(frequency*counter*3.14159/180-4*lag));
 
             s1.write(90);
-            s3.write(90); //Set this motor to less than 90 for Forward motion
-            s5.write(70);
+            s3.write(70); //Set this motor to less than 90 for Forward motion
+            s5.write(110);
             //s7.write(90+amplitude7*cos(frequency*counter*3.14159/180+2*lag));
-            s7.write(105);
+            s7.write(75);
             s9.write(90); //Set this motor to less than 90 for Backward motion
         }
     }
@@ -218,13 +230,13 @@ void Serpentine(const int function)
     {
         //Put snake in starting position
         s1.write(90);
-        s3.write(90);
+        s3.write(70);
         //s5.write(100);
         s5.write(80);
-        //s7.write(110);
-        s7.write(70);
-        // s9.write(75);
-        s9.write(105);
+        s7.write(110);
+        //s7.write(70);
+        s9.write(75);
+        //s9.write(105);
 
         s2.write(90);
         s4.write(90);
@@ -341,48 +353,51 @@ void Turn(const int function) {
     }
 
 }
-void Rolling() {
+void Rolling(const int function) {
 
-        int delayTime = 1000;
+    // Define variables
+    int counter = 0; // Loop counter variable
+    float lag = 1.5; // Phase lag between segments
+    int frequency = 1; // Oscillation frequency of segments.
+    int ampHor = 40; // Horizontal amplitude of the Sidewind motion of the snake
+    int ampVert = 40; // Vertical amplitude of Sidewind motion of the snake
+    int offset = 0;
+    int delayTime = 7; // Delay between limb movements
+    int startPause = 5000;  // Delay time to position robot
 
-        s1.write(90);
-        s2.write(90);
-        s3.write(90);
-        s4.write(90);
-        s5.write(10);
-        s6.write(90);
-        s7.write(90);
-        s8.write(90);
-        s9.write(90);
-        s10.write(90);
+    if (function == ROLLINGL) {
+        Serial.println("ROLLING TO THE LEFT BITCH");
+        for(counter = 0; counter < 360; counter += 1)  {
+            delay(delayTime);
+            s1.write(90-(offset+ampHor*cos(frequency*counter*3.14159/180-0*lag)));
+            //s3.write(90-(offset+ampHor*cos(frequency*counter*3.14159/180-1.25*lag)));
+            s5.write(90-(offset+ampHor*cos(frequency*counter*3.14159/180-2.5*lag)));
+            s7.write(90-(offset+ampHor*cos(frequency*counter*3.14159/180-3.75*lag)));
+            s9.write(90-(offset+ampHor*cos(frequency*counter*3.14159/180-5*lag)));
 
-        delay(delayTime);
-
-        s1.write(90);
-        s2.write(90);
-        s3.write(90);
-        s4.write(90);
-        s6.write(90);
-        s7.write(90);
-        s8.write(40);
-        s9.write(90);
-        s10.write(90);
-
-        delay(delayTime);
-
-        s8.write(90);
-
-        delay(delayTime);
-
-        s1.write(90);
-        s2.write(90);
-        s3.write(90);
-        s4.write(90);
-        s5.write(90);
-        s6.write(90);
-        s7.write(90);
-        //s8.write(90);
-        s9.write(90);
-        s10.write(90);
-
+            s2.write(90+offset+ampVert*cos(frequency*counter*3.14159/180-0*lag));
+            s4.write(90+offset+ampVert*cos(frequency*counter*3.14159/180-1.25*lag));
+            s6.write(90+offset+ampVert*cos(frequency*counter*3.14159/180-2.5*lag));
+            //s8.write(90+offset+ampVert*cos(frequency*counter*3.14159/180-3.75*lag));
+            s10.write(90+offset+ampVert*cos(frequency*counter*3.14159/180-5*lag));
+        }
     }
+    else if (function == ROLLINGR) {
+        Serial.println("ROLLING TO THE RIGHT BITCH");
+        for(counter = 0; counter < 360; counter += 1)  {
+            delay(delayTime);
+            s1.write(90+offset+ampHor*cos(frequency*counter*3.14159/180-0*lag));
+            //s3.write(90+offset+ampHor*cos(frequency*counter*3.14159/180-1.25*lag));
+            s5.write(90+offset+ampHor*cos(frequency*counter*3.14159/180-2.5*lag));
+            s7.write(90+offset+ampHor*cos(frequency*counter*3.14159/180-3.75*lag));
+            s9.write(90+offset+ampHor*cos(frequency*counter*3.14159/180-5*lag));
+
+            s2.write(90+offset+ampVert*cos(frequency*counter*3.14159/180-0*lag));
+            s4.write(90+offset+ampVert*cos(frequency*counter*3.14159/180-1.25*lag));
+            s6.write(90+offset+ampVert*cos(frequency*counter*3.14159/180-2.5*lag));
+            //s8.write(90+offset+ampVert*cos(frequency*counter*3.14159/180-3.75*lag));
+            s10.write(90+offset+ampVert*cos(frequency*counter*3.14159/180-5*lag));
+        }
+    }
+    
+}
