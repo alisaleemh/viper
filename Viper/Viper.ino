@@ -108,6 +108,10 @@ void loop() {
                     Turn(LEFTTURN);
                     Serial.println(F("Turn Left"));
                 }
+                if (Xbox.getButtonClick(LEFT, i)) {
+                    Rolling();
+                    Serial.println(F("Rolling"));
+                }
             }
         }
     }
@@ -203,9 +207,9 @@ void Serpentine(const int function)
 
             s1.write(90);
             s3.write(90); //Set this motor to less than 90 for Forward motion
-            s5.write(110);
+            s5.write(70);
             //s7.write(90+amplitude7*cos(frequency*counter*3.14159/180+2*lag));
-            s7.write(75);
+            s7.write(105);
             s9.write(90); //Set this motor to less than 90 for Backward motion
         }
     }
@@ -215,9 +219,12 @@ void Serpentine(const int function)
         //Put snake in starting position
         s1.write(90);
         s3.write(90);
-        s5.write(100);
-        s7.write(110);
-        s9.write(75);
+        //s5.write(100);
+        s5.write(80);
+        //s7.write(110);
+        s7.write(70);
+        // s9.write(75);
+        s9.write(105);
 
         s2.write(90);
         s4.write(90);
@@ -230,60 +237,152 @@ void Serpentine(const int function)
 
 void Turn(const int function) {
 
-    int delayTime = 1000;
+    if (function == RIGHTTURN)
+    {
+        int delayTime = 1000;
 
-    s1.write(90);
-    s2.write(90);
-    s3.write(90);
-    s4.write(90);
-    s5.write(10);
-    s6.write(90);
-    s7.write(90);
-    s8.write(90);
-    s9.write(90);
-    s10.write(90);
+        s1.write(90);
+        s2.write(90);
+        s3.write(90);
+        s4.write(90);
+        s5.write(10);
+        s6.write(90);
+        s7.write(90);
+        s8.write(90);
+        s9.write(90);
+        s10.write(90);
 
-    delay(delayTime);
+        delay(delayTime);
 
-    s1.write(90);
-    s2.write(90);
-    s3.write(90);
-    s4.write(90);
-    //s5.write(90);
-    s6.write(90);
-    s7.write(90);
-    s8.write(40);
-    s9.write(90);
-    s10.write(90);
+        s1.write(90);
+        s2.write(90);
+        s3.write(90);
+        s4.write(90);
+        //s5.write(90);
+        s6.write(90);
+        s7.write(90);
+        s8.write(40);
+        s9.write(90);
+        s10.write(90);
 
-    delay(delayTime);
+        delay(delayTime);
 
-    s1.write(90);
-    s2.write(90);
-    s3.write(90);
-    s4.write(90);
-    s5.write(90);
-    s6.write(90);
-    s7.write(90);
-    //s8.write(90);
-    s9.write(90);
-    s10.write(90);
+        s1.write(90);
+        s2.write(90);
+        s3.write(90);
+        s4.write(90);
+        s5.write(90);
+        s6.write(90);
+        s7.write(90);
+        //s8.write(90);
+        s9.write(90);
+        s10.write(90);
 
-    delay(delayTime);
+        delay(delayTime);
 
-    s8.write(90);
+        s8.write(90);
 
-    // s1.write(90);
-    // s2.write(90);
-    // s3.write(90);
-    // s4.write(170);
-    // s5.write(90);
-    // s6.write(10);
-    // s7.write(90);
-    // s8.write(90);
-    // s9.write(90);
-    // s10.write(90);
+        // s1.write(90);
+        // s2.write(90);
+        // s3.write(90);
+        // s4.write(170);
+        // s5.write(90);
+        // s6.write(10);
+        // s7.write(90);
+        // s8.write(90);
+        // s9.write(90);
+        // s10.write(90);
+    }
 
+    if (function == LEFTTURN)
+    {
+        int delayTime = 1000;
 
+        s1.write(90);
+        s2.write(90);
+        s3.write(90);
+        s4.write(90);
+        s5.write(10);
+        s6.write(90);
+        s7.write(90);
+        s8.write(90);
+        s9.write(90);
+        s10.write(90);
+
+        delay(delayTime);
+
+        s1.write(90);
+        s2.write(90);
+        s3.write(90);
+        s4.write(90);
+        //s5.write(90);
+        s6.write(90);
+        s7.write(90);
+        s8.write(140);
+        s9.write(90);
+        s10.write(90);
+
+        delay(delayTime);
+
+        s1.write(90);
+        s2.write(90);
+        s3.write(90);
+        s4.write(90);
+        s5.write(90);
+        s6.write(90);
+        s7.write(90);
+        //s8.write(90);
+        s9.write(90);
+        s10.write(90);
+
+        delay(delayTime);
+
+        s8.write(90);
+    }
 
 }
+void Rolling() {
+
+        int delayTime = 1000;
+
+        s1.write(90);
+        s2.write(90);
+        s3.write(90);
+        s4.write(90);
+        s5.write(10);
+        s6.write(90);
+        s7.write(90);
+        s8.write(90);
+        s9.write(90);
+        s10.write(90);
+
+        delay(delayTime);
+
+        s1.write(90);
+        s2.write(90);
+        s3.write(90);
+        s4.write(90);
+        s6.write(90);
+        s7.write(90);
+        s8.write(40);
+        s9.write(90);
+        s10.write(90);
+
+        delay(delayTime);
+
+        s8.write(90);
+
+        delay(delayTime);
+
+        s1.write(90);
+        s2.write(90);
+        s3.write(90);
+        s4.write(90);
+        s5.write(90);
+        s6.write(90);
+        s7.write(90);
+        //s8.write(90);
+        s9.write(90);
+        s10.write(90);
+
+    }
