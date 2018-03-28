@@ -30,33 +30,31 @@ int startPause = 1000;  // Delay time to position robot
 
 void setup()
 {
-    // Attach segments to pins
-    s1.attach(2);
-    s2.attach(3);
-    s3.attach(4);
-    s4.attach(5);
-    s5.attach(6);
-    s6.attach(7);
-    s7.attach(8);
-    s8.attach(9);
-    s9.attach(10);
-    s10.attach(11);
-    s11.attach(12);
-    s12.attach(13);
+    // Put snake in starting position
+    s1.attach(31);
+    s2.attach(30);
+    s3.attach(29);
+    s4.attach(28);
+    s5.attach(27);
+    s6.attach(26);
+    s7.attach(25);
+    s8.attach(24);
+    s9.attach(23);
+    s10.attach(22);
 
-    //Put snake in starting position
-    s1.write(90+ampHor*cos(0*lag));
-    s3.write(90+ampHor*cos(1*lag));
-    s5.write(90+ampHor*cos(2*lag));
-    s7.write(90+ampHor*cos(3*lag));
-    s9.write(90+ampHor*cos(4*lag));
-    //s11.write(90+ampHor*cos(5*lag));
-
-    s2.write(90+ampVert*cos(0*lag));
-    s4.write(90+ampVert*cos(1*lag));
-    s6.write(90+ampVert*cos(2*lag));
-    s8.write(90+ampVert*cos(3*lag));
-    s10.write(90+ampVert*cos(4*lag));
+    // //Put snake in starting position
+    // s1.write(90+ampHor*cos(0*lag));
+    // s3.write(90+ampHor*cos(1*lag));
+    // s5.write(90+ampHor*cos(2*lag));
+    // s7.write(90+ampHor*cos(3*lag));
+    // s9.write(90+ampHor*cos(4*lag));
+    // //s11.write(90+ampHor*cos(5*lag));
+    //
+    // s2.write(90+ampVert*cos(0*lag));
+    // s4.write(90+ampVert*cos(1*lag));
+    // s6.write(90+ampVert*cos(2*lag));
+    // s8.write(90+ampVert*cos(3*lag));
+    // s10.write(90+ampVert*cos(4*lag));
     //s12.write(90+ampVert*cos(5*lag));
 
     delay(startPause);  // Pause to position robot
@@ -68,18 +66,18 @@ void loop()
     // Serpentine motion
     for(counter = 0; counter < 360; counter += 1)  {
 
-        delay(delayTime);
-        s1.write(90+offset+ampHor*cos(frequency*counter*3.14159/180-0*lag));
-        s3.write(90+offset+ampHor*cos(frequency*counter*3.14159/180-1.25*lag));
-        s5.write(90+offset+ampHor*cos(frequency*counter*3.14159/180-2.5*lag));
-        s7.write(90+offset+ampHor*cos(frequency*counter*3.14159/180-3.75*lag));
-        s9.write(90+offset+ampHor*cos(frequency*counter*3.14159/180-5*lag));
-        //s11.write(90+offset+ampHor*cos(frequency*counter*3.14159/180-5*lag));
-
-        s2.write(90+offset+ampVert*cos(frequency*counter*3.14159/180-0*lag));
-        s4.write(90+offset+ampVert*cos(frequency*counter*3.14159/180-1.25*lag));
-        s6.write(90+offset+ampVert*cos(frequency*counter*3.14159/180-2.5*lag));
-        s8.write(90+offset+ampVert*cos(frequency*counter*3.14159/180-3.75*lag));
-        s10.write(90+offset+ampVert*cos(frequency*counter*3.14159/180-5*lag));
+         delay(delayTime);
+        // s1.write(90+offset+ampHor*cos(frequency*counter*3.14159/180-0*lag));
+        // s3.write(counter/2);
+        // s5.write(90+offset+ampHor*cos(frequency*counter*3.14159/180-2.5*lag));
+        // s7.write(90+offset+ampHor*cos(frequency*counter*3.14159/180-3.75*lag));
+        // s9.write(90+offset+ampHor*cos(frequency*counter*3.14159/180-5*lag));
+        // //s11.write(90+offset+ampHor*cos(frequency*counter*3.14159/180-5*lag));
+        //
+        // s2.write(90+offset+ampVert*cos(frequency*counter*3.14159/180-0*lag));
+        //s4.write(90+offset+ampVert*cos(frequency*counter*3.14159/180-1.25*lag));
+        // s6.write(90+offset+ampVert*cos(frequency*counter*3.14159/180-2.5*lag));
+         s8.write(90+offset+ampVert*cos(frequency*counter*3.14159/180-3.75*lag));
+         s10.write(90+offset+ampVert*cos(frequency*counter*3.14159/180-5*lag));
     }    //s12.write(90+offset+ampVert*cos(frequency*counter*3.14159/180-5*lag));
 }

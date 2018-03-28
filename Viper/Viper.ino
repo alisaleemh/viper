@@ -54,16 +54,16 @@ void setup() {
     }
     Serial.print(F("\r\nXbox Wireless Receiver Library Started"));
     // Attach segments to pins
-    s1.attach(31);
-    s2.attach(30);
-    s3.attach(29);
-    s4.attach(28);
-    s5.attach(27);
-    s6.attach(26);
-    s7.attach(25);
-    s8.attach(24);
-    s9.attach(23);
-    s10.attach(22);
+    s1.attach(22);
+    s2.attach(23);
+    s3.attach(24);
+    s4.attach(25);
+    s5.attach(26);
+    s6.attach(27);
+    s7.attach(28);
+    s8.attach(29);
+    s9.attach(30);
+    s10.attach(31);
 }
 void loop() {
     Usb.Task();
@@ -201,8 +201,8 @@ void Serpentine(const int function)
             s8.write(90+amplitude*cos(frequency*counter*3.14159/180-2*lag));
             s10.write(90+amplitude*cos(frequency*counter*3.14159/180-4*lag));
 
-            s1.write(90);
-            s3.write(90); //Set this motor to less than 90 for Forward motion
+            s1.write(60);
+            s3.write(120); //Set this motor to less than 90 for Forward motion
             s5.write(110);
             //s7.write(90+amplitude7*cos(frequency*counter*3.14159/180+2*lag));
             s7.write(75);

@@ -55,31 +55,20 @@ void setup()
     digitalWrite(rightPin, LOW);
     digitalWrite(leftPin, LOW);
 
-    // Attach segments to PWM pins
-    s1.attach(2);
-    s2.attach(3);
-    s3.attach(4);
-    s4.attach(5);
-    s5.attach(6);
-    s6.attach(7);
-    s7.attach(8);
-    s8.attach(9);
-    s9.attach(10);
-    s10.attach(11);
 
 
 
     // Put snake in straight starting position
-    s1.write(90);
-    s2.write(90);
-    s3.write(90);
-    s4.write(90);
-    s5.write(90);
-    s6.write(90);
-    s7.write(90);
-    s8.write(90);
-    s9.write(90);
-    s10.write(90);
+    s1.attach(31);
+    s2.attach(30);
+    s3.attach(29);
+    s4.attach(28);
+    s5.attach(27);
+    s6.attach(26);
+    s7.attach(25);
+    s8.attach(24);
+    s9.attach(23);
+    s10.attach(22);
 
 
 
@@ -101,8 +90,9 @@ void loop()
     for(pos = 0; pos < flex; pos +=  1)
     {
         s9.write(90-pos);
-        s7.write(90+2*pos);
+        s7.write(90+(2*pos));
         s5.write(90-pos);
+        s3.write(90-(2*pos));
         delay(smoothnessDelay);
     }
 
