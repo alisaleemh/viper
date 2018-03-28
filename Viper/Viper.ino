@@ -201,8 +201,8 @@ void Serpentine(const int function)
             s8.write(90+amplitude*cos(frequency*counter*3.14159/180-2*lag));
             s10.write(90+amplitude*cos(frequency*counter*3.14159/180-4*lag));
 
-            s1.write(60);
-            s3.write(120); //Set this motor to less than 90 for Forward motion
+            s1.write(90);
+            s3.write(90); //Set this motor to less than 90 for Forward motion
             s5.write(110);
             //s7.write(90+amplitude7*cos(frequency*counter*3.14159/180+2*lag));
             s7.write(75);
