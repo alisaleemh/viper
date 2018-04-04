@@ -249,50 +249,44 @@ void Serpentine(const int function)
 
 void Turn(const int function) {
 
+    s1.write(90);
+    s2.write(90);
+    s3.write(90);
+    s4.write(90);
+    s5.write(90);
+    s6.write(90);
+    s7.write(90);
+    s8.write(90);
+    s9.write(90);
+    s10.write(90);
+
     if (function == RIGHTTURN)
     {
         int delayTime = 1000;
 
-        s1.write(90);
-        s2.write(90);
-        s3.write(90);
-        s4.write(90);
-        s5.write(10);
-        s6.write(90);
-        s7.write(90);
-        s8.write(90);
-        s9.write(90);
-        s10.write(90);
+        s5.write(50);
 
         delay(delayTime);
 
-        s1.write(90);
-        s2.write(90);
-        s3.write(90);
-        s4.write(90);
-        //s5.write(90);
-        s6.write(90);
-        s7.write(90);
-        s8.write(40);
-        s9.write(90);
-        s10.write(90);
+        s6.write(10);
 
         delay(delayTime);
 
-        s1.write(90);
-        s2.write(90);
-        s3.write(90);
-        s4.write(90);
         s5.write(90);
-        s6.write(90);
-        s7.write(90);
-        //s8.write(90);
-        s9.write(90);
-        s10.write(90);
 
         delay(delayTime);
 
-        s8.write(90);
+        s1.write(110);
+        s3.write(100);
+
+        delay(delayTime);
+
+        s7.write(70);
+        s9.write(50);
+
+        delay(delayTime);
+
+        s6.write(90);
 
         // s1.write(90);
         // s2.write(90);
@@ -399,5 +393,5 @@ void Rolling(const int function) {
             s10.write(90+offset+ampVert*cos(frequency*counter*3.14159/180-5*lag));
         }
     }
-    
+
 }
